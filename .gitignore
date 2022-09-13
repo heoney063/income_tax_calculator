@@ -1,32 +1,66 @@
-# Prerequisites
-*.d
+#include <iostream>
+#include <iomanip>
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+using namespace std;
 
-# Precompiled Headers
-*.gch
-*.pch
+int main() {
+	// 1-1. setting variables (lastName, lastSsn, payRate, hoursWorked)
+	string lastName;
+	string lastSsn;
+	unsigned int hoursWorked;
+	double payRate;
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+	// 1-2. setting variables (grossPay, federal_withholding, state_withholding, netPay)
+	double grossPay;
+	double federal_withholding;
+	double state_withholding;
+	double netPay;
 
-# Fortran module files
-*.mod
-*.smod
+	// 2. cin >> 1-1 variables 	
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+	// 3. cout << 1-1 variables
+	cout << "Please enter your last name: ";
+	cin >> lastName;
+	
+	cout << "Please enter the last 4 digits of your SSN: ";
+	cin >> lastSsn;
+	
+	cout << "Please enter your hourly pay rate: " << setprecision(2) << fixed;
+	cin >> payRate;
+	
+	cout << "Pease enter the number of hours you worked: ";
+	cin >> hoursWorked;
+	cout << endl;
+	cout << endl;
 
-# Executables
-*.exe
-*.out
-*.app
+	// 4. cout << show summary about 1-1 variables
+	cout << "Payroll Summary for: " << lastName << endl;
+	cout << "SSN (Last 4 Digits): " << lastSsn << endl;
+	cout << "You worked " << hoursWorked << " hours at " << "$" << payRate << " per hour." << endl;
+	cout << endl;
+
+	// 5. setting formula 1-2 variables by calculating with 1-1 variables
+	grossPay = payRate * hoursWorked;
+	federal_withholding = grossPay * 0.15;
+	state_withholding = grossPay * 0.05;
+	netPay = grossPay - federal_withholding - state_withholding;
+
+	// 6. cout << 1-2 calculate variables
+	cout << setw(24) << left << "Gross Pay: " << "$";
+	cout << setw(9) << right << setprecision(2) << fixed << grossPay << endl;
+	cout << setw(24) << left << "Federal Withholding: " << "$";
+	cout << setw(9) << right << setprecision(2) << fixed << federal_withholding << endl;
+	cout << setw(24) << left << "State Withholding: " << "$";
+	cout << setw(9) << right << setprecision(2) << fixed << state_withholding << endl;
+	// 7. produce long line
+	cout << setfill('-') << setw(34) << "" << endl;
+	cout << setfill(' ');	
+
+	// 8. cout << net pay and press any key message
+	cout << setw(24) << left << "Net Pay: " << "$";
+	cout << setw(9) << right << setprecision(2) << fixed << netPay << endl;
+	cout << "Press any key to continue . . .";
+	cout << endl;	
+
+	return 0;
+}
